@@ -20,6 +20,7 @@
   "homepage": "https://github.com/breno-aredes/projeto12-tweteroo#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "cros": "^1.0.1",
     "express": "^4.18.2"
   }
 }
