@@ -1,0 +1,21 @@
+{
+  "name": "projeto12-tweteroo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breno-aredes/projeto12-tweteroo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/breno-aredes/projeto12-tweteroo/issues"
+  },
+  "homepage": "https://github.com/breno-aredes/projeto12-tweteroo#readme"
+}
