@@ -11,7 +11,7 @@ server.use(cors());
 //response -> devolve a informação
 //127.0.0.1:'servidor''/Nome da rota' = localhost:'servidor''/Nome da rota'
 
-server.get("/usuario", (req, res) => {
+server.get("/sing-up", (req, res) => {
   const usuario = [
     {
       username: "bobesponja",
@@ -26,9 +26,10 @@ server.get("/usuario", (req, res) => {
   ];
 
   res.send(usuario);
+  console.log(req.params);
 });
 
-server.get("/tweet", (req, res) => {
+server.get("/tweets", (req, res) => {
   const tweet = [
     {
       username: "bobesponja",
@@ -41,6 +42,8 @@ server.get("/tweet", (req, res) => {
   ];
 
   res.send(tweet);
+
+  console.log(req);
 });
 
 server.listen(5000, () => {
