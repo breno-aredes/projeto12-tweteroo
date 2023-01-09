@@ -8,10 +8,8 @@ server.use(cors());
 //para ultilizar json
 server.use(express.json());
 
-//deleter infos dentros
 const users = [];
 
-//deleter infos dentros
 const tweets = [];
 
 //server.get leva como parametros (nome da rota, (request, response) => {})
@@ -27,40 +25,40 @@ server.post("/sign-up", (req, res) => {
   res.send(users);
 });
 
+//função para colocar o avatar nos tweets
+function addAvatar(element) {
+  for (let i = 0; i < element.length; i++) {
+    for (let j = 0; j < users.length; j++) {
+      if (element[i].username === users[j].username) {
+        element[i].avatar = users[j].avatar;
+      }
+    }
+  }
+}
+
 //response dos tweets (get)
 server.get("/tweets", (req, res) => {
   if (tweets.length <= 10) {
+    addAvatar(tweets);
     return res.send(tweets.reverse());
   } else {
     const LastTen = tweets.slice(tweets.length - 10, tweets.length);
 
+    addAvatar(LastTen);
     res.send(LastTen.reverse());
   }
 });
 
 //post tweets
-//res.sendStatus(401) para usuario não autorizado.
 server.post("/tweets", (req, res) => {
   const newTweet = req.body;
-  tweets.push(newTweet);
   const user = req.headers.user;
   if (!users.find((u) => u.username === user)) {
     return res.sendStatus(401);
   }
-  console.log(user);
+  tweets.push(newTweet);
+
   res.send(tweets);
 });
 
-//requisição dos tweets
-// server.get("/tweets/:username", (req, res) => {
-//   const s = req.params.username;
-
-//   //filtra apenas o usuario do tweet
-//   const userTweet = tweets.filter((U) => U.username === s);
-
-//   res.send(userTweet);
-// });
-
-server.listen(5000, () => {
-  console.log("servidor funcionou!");
-});
+server.listen(5000);
