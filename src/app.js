@@ -9,30 +9,10 @@ server.use(cors());
 server.use(express.json());
 
 //deleter infos dentros
-const users = [
-  {
-    username: "bobesponja",
-    avatar:
-      "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
-  },
-  {
-    username: "PatrickEstrela",
-    avatar:
-      "https://www.torredevigilancia.com/wp-content/uploads/2020/08/patrick-star-wallpaper-810x608.jpg",
-  },
-];
+const users = [];
 
 //deleter infos dentros
-const tweets = [
-  {
-    username: "bobesponja",
-    tweet: "eu amo o hub",
-  },
-  {
-    username: "PatrickEstrela",
-    tweet: "eu não amo o hub",
-  },
-];
+const tweets = [];
 
 //server.get leva como parametros (nome da rota, (request, response) => {})
 //request -> recebe informações na requisição
