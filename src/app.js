@@ -5,9 +5,11 @@ import cors from "cors";
 const server = express();
 //cors libera servidor para ser acessado por qualquer aplicação
 server.use(cors());
+//para ultilizar json
+server.use(express.json());
 
 //deleter infos dentros
-const usuario = [
+const users = [
   {
     username: "bobesponja",
     avatar:
@@ -37,9 +39,11 @@ const tweets = [
 //response -> devolve a informação
 //127.0.0.1:'servidor''/Nome da rota' = localhost:'servidor''/Nome da rota'//tudo atrasado
 
-//apenas response do sing-up
-server.get("/sing-up", (req, res) => {
-  res.send(usuario);
+//post sign-up
+server.post("/sign-up", (req, res) => {
+  const loggedUser = req.body;
+  users.push(loggedUser);
+  res.send(loggedUser);
 });
 
 //apenas response dos tweets
@@ -48,10 +52,10 @@ server.get("/tweets", (req, res) => {
 });
 //requisição dos tweets
 server.get("/tweets/:username", (req, res) => {
-  const user = req.params.username;
+  const s = req.params.username;
 
   //filtra apenas o usuario do tweet
-  const userTweet = tweets.filter((U) => U.username === user);
+  const userTweet = tweets.filter((U) => U.username === s);
 
   res.send(userTweet);
 });
