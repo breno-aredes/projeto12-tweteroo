@@ -54,10 +54,15 @@ server.get("/tweets", (req, res) => {
 //post tweets
 server.post("/tweets", (req, res) => {
   const newTweet = req.body;
-  const user = req.headers.user;
-  if (!users.find((u) => u.username === user)) {
+
+  const verifiedUser = users.find(
+    (item) => item.username === newTweet.username
+  );
+
+  if (!verifiedUser) {
     return res.sendStatus(401);
   }
+
   tweets.push(newTweet);
 
   res.send(tweets);
