@@ -55,9 +55,9 @@ server.get("/tweets", (req, res) => {
 server.post("/tweets", (req, res) => {
   const newTweet = req.body;
   const user = req.headers.user;
-  // if (!users.find((u) => u.username === user)) {
-  //   return res.sendStatus(401);
-  // }
+  if (!users.find((u) => u.username === user)) {
+    return res.sendStatus(401);
+  }
   tweets.push(newTweet);
 
   res.send(tweets);
