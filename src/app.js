@@ -49,14 +49,12 @@ server.post("/sign-up", (req, res) => {
 
 //response dos tweets (get)
 server.get("/tweets", (req, res) => {
-  const limit = req.query;
-
   if (tweets.length <= 10) {
-    return res.send(tweets);
+    return res.send(tweets.reverse());
   } else {
     const LastTen = tweets.slice(tweets.length - 10, tweets.length);
 
-    res.send(LastTen);
+    res.send(LastTen.reverse());
   }
 });
 
