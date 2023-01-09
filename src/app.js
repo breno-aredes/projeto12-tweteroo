@@ -39,8 +39,10 @@ function addAvatar(element) {
 //response dos tweets (get)
 server.get("/tweets", (req, res) => {
   if (tweets.length <= 10) {
-    addAvatar(tweets);
-    return res.send(tweets.reverse());
+    const reversetweets = tweets.slice(0, tweets.length);
+    addAvatar(reversetweets);
+
+    return res.send(reversetweets.reverse());
   } else {
     const LastTen = tweets.slice(tweets.length - 10, tweets.length);
 
@@ -53,9 +55,9 @@ server.get("/tweets", (req, res) => {
 server.post("/tweets", (req, res) => {
   const newTweet = req.body;
   const user = req.headers.user;
-  if (!users.find((u) => u.username === user)) {
-    return res.sendStatus(401);
-  }
+  // if (!users.find((u) => u.username === user)) {
+  //   return res.sendStatus(401);
+  // }
   tweets.push(newTweet);
 
   res.send(tweets);
