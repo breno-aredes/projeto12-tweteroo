@@ -43,22 +43,31 @@ const tweets = [
 server.post("/sign-up", (req, res) => {
   const loggedUser = req.body;
   users.push(loggedUser);
-  res.send(loggedUser);
+
+  res.send(users);
 });
 
-//apenas response dos tweets
+//response dos tweets (get)
 server.get("/tweets", (req, res) => {
   res.send(tweets);
 });
-//requisição dos tweets
-server.get("/tweets/:username", (req, res) => {
-  const s = req.params.username;
 
-  //filtra apenas o usuario do tweet
-  const userTweet = tweets.filter((U) => U.username === s);
-
-  res.send(userTweet);
+//post tweets
+server.post("/tweets", (req, res) => {
+  const newTweet = req.body;
+  tweets.push(newTweet);
+  res.send(tweets);
 });
+
+//requisição dos tweets
+// server.get("/tweets/:username", (req, res) => {
+//   const s = req.params.username;
+
+//   //filtra apenas o usuario do tweet
+//   const userTweet = tweets.filter((U) => U.username === s);
+
+//   res.send(userTweet);
+// });
 
 server.listen(5000, () => {
   console.log("servidor funcionou!");
