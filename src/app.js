@@ -49,10 +49,19 @@ server.post("/sign-up", (req, res) => {
 
 //response dos tweets (get)
 server.get("/tweets", (req, res) => {
-  res.send(tweets);
+  const limit = req.query;
+
+  if (tweets.length <= 10) {
+    return res.send(tweets);
+  } else {
+    const LastTen = tweets.slice(tweets.length - 10, tweets.length);
+
+    res.send(LastTen);
+  }
 });
 
 //post tweets
+//res.sendStatus(401) para usuario não autorizado.
 server.post("/tweets", (req, res) => {
   const newTweet = req.body;
   tweets.push(newTweet);
